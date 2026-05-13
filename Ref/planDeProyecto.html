@@ -1,0 +1,1037 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plan de Proyecto — Dashboard de Movilidad Urbana ZMG</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.7;
+            color: #333;
+            background: #f5f5f5;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+        
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 60px 40px;
+            text-align: center;
+        }
+        
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+        
+        .nav-menu {
+            background: #2c3e50;
+            padding: 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .nav-menu ul {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .nav-menu li {
+            flex: 1;
+            min-width: 150px;
+        }
+        
+        .nav-menu a {
+            display: block;
+            color: white;
+            text-decoration: none;
+            padding: 15px 20px;
+            text-align: center;
+            transition: background 0.3s;
+            border-right: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .nav-menu a:hover {
+            background: #667eea;
+        }
+        
+        .nav-menu li:last-child a {
+            border-right: none;
+        }
+        
+        main {
+            padding: 60px 40px;
+        }
+        
+        section {
+            margin-bottom: 80px;
+            scroll-margin-top: 80px;
+        }
+        
+        section h2 {
+            font-size: 2em;
+            color: #667eea;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #667eea;
+        }
+        
+        section h3 {
+            font-size: 1.5em;
+            color: #2c3e50;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+        
+        section h4 {
+            font-size: 1.2em;
+            color: #34495e;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+        
+        p {
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        
+        thead {
+            background: #667eea;
+            color: white;
+        }
+        
+        th {
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #ecf0f1;
+        }
+        
+        tbody tr:hover {
+            background: #f9f9f9;
+        }
+        
+        tbody tr:nth-child(even) {
+            background: #f5f5f5;
+        }
+        
+        .highlight {
+            background: #fff3cd;
+            padding: 20px;
+            border-left: 4px solid #ffc107;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+        
+        .milestone {
+            background: #d4edda;
+            padding: 20px;
+            border-left: 4px solid #28a745;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+        
+        .critical {
+            background: #f8d7da;
+            padding: 20px;
+            border-left: 4px solid #dc3545;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+        
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin: 20px 0;
+        }
+        
+        @media (max-width: 768px) {
+            .grid-2 {
+                grid-template-columns: 1fr;
+            }
+            
+            .nav-menu ul {
+                flex-direction: column;
+            }
+            
+            .nav-menu li {
+                min-width: 100%;
+            }
+            
+            .nav-menu a {
+                border-right: none;
+                border-bottom: 1px solid rgba(255,255,255,0.1);
+            }
+            
+            main {
+                padding: 30px 20px;
+            }
+        }
+        
+        footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 30px 40px;
+            margin-top: 60px;
+        }
+        
+        .emoji {
+            margin-right: 8px;
+        }
+        
+        code {
+            background: #f0f0f0;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            color: #d63384;
+        }
+        
+        ul, ol {
+            margin: 20px 0 20px 40px;
+        }
+        
+        li {
+            margin-bottom: 10px;
+        }
+        
+        strong {
+            color: #2c3e50;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Plan de Proyecto — Dashboard de Movilidad Urbana ZMG</h1>
+            <p>Documento de Gestión Ágil · Versión 1.0</p>
+            <p>Arquitectura de tres capas · 6 Sprints · 21 Abril – 2 Junio 2026</p>
+        </header>
+        
+        <nav class="nav-menu">
+            <ul>
+                <li><a href="#seccion-1">1. Resumen Ejecutivo</a></li>
+                <li><a href="#seccion-2">2. Roadmap de Sprints</a></li>
+                <li><a href="#seccion-3">3. Hitos y Ruta Crítica</a></li>
+                <li><a href="#seccion-4">4. Mitigación de Riesgos</a></li>
+                <li><a href="#seccion-5">5. Inventario de Artefactos</a></li>
+            </ul>
+        </nav>
+        
+        <main>
+            <!-- SECCIÓN 1: RESUMEN EJECUTIVO -->
+            <section id="seccion-1">
+                <h2><span class="emoji">📋</span>1. Resumen Ejecutivo</h2>
+                
+                <h3>1.1 Descripción del Proyecto</h3>
+                <p>El <strong>Dashboard de Movilidad Urbana de la ZMG</strong> es un sistema de visualización de tres capas que transforma datos fragmentados de tráfico, calidad del aire y siniestralidad vial en inteligencia accionable para tres audiencias diferenciadas. El proyecto nace del colapso vial constante de rutas clave como el corredor López Mateos–Periférico: los datos existían, el instrumento de integración, no.</p>
+                
+                <h3>1.2 Arquitectura de Solución</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Capa</th>
+                            <th>Nombre</th>
+                            <th>Audiencia</th>
+                            <th>Función Central</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>1</strong></td>
+                            <td>Estratégica</td>
+                            <td>Ayuntamiento · SEMOV · SITEUR</td>
+                            <td>KPIs agregados, mapas coropléticos, proyecciones de política pública</td>
+                        </tr>
+                        <tr>
+                            <td><strong>2</strong></td>
+                            <td>Analítica</td>
+                            <td>Planificadores urbanos · Equipo académico</td>
+                            <td>Series de tiempo, correlaciones, heatmaps, panel de calidad de datos</td>
+                        </tr>
+                        <tr>
+                            <td><strong>3</strong></td>
+                            <td>Operacional / Ciudadana</td>
+                            <td>Población general</td>
+                            <td>Semáforo de congestión, tiempos de traslado, insight del día</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <h3>1.3 KPIs Centrales</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>KPI</th>
+                            <th>Frecuencia</th>
+                            <th>Capas</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>Volumen de Tráfico (veh/30 min)</td>
+                            <td>Tiempo real</td>
+                            <td>1 + 2</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>Demora en Hora Pico (min adicionales)</td>
+                            <td>Diario</td>
+                            <td>1 + 3</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>ICA — NO₂ / PM₂.₅ (µg/m³ / IMECA)</td>
+                            <td>Tiempo real (horario)</td>
+                            <td>1 + 3</td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>Tasa de Siniestros Viales (siniestros/Mveh-km)</td>
+                            <td>Diario</td>
+                            <td>1</td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td>Tiempo de Traslado en Corredores (min)</td>
+                            <td>Tiempo real (c/15 min)</td>
+                            <td>3</td>
+                        </tr>
+                        <tr>
+                            <td>6</td>
+                            <td>Distribución Pico / Valle (% del volumen diario)</td>
+                            <td>Diario</td>
+                            <td>1 + 2</td>
+                        </tr>
+                        <tr>
+                            <td>7</td>
+                            <td>Velocidad Media de Circulación (km/h)</td>
+                            <td>Tiempo real (c/30 min)</td>
+                            <td>2</td>
+                        </tr>
+                        <tr>
+                            <td>8</td>
+                            <td>Índice de Cobertura de Datos (%)</td>
+                            <td>Semanal</td>
+                            <td>2 (interno)</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <h3>1.4 Stack Tecnológico</h3>
+                <p>Python (Pandas, Matplotlib, Seaborn, Folium) · R (ggplot2) · Power BI Desktop (DAX) · Mapas (Folium / Mapbox) · Fuentes: Google Maps API, Waze for Cities, SINAICA, SEMOV, SSPMG, INEGI, OSM</p>
+                
+            
+                <h3>1.5 Fuentes de Datos Primarias</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Categoría</th>
+                            <th>Fuente</th>
+                            <th>Tipo de Dato</th>
+                            <th>Cobertura Estimada</th>
+                            <th>Acceso</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td rowspan="5"><strong>Tráfico en Tiempo Real</strong></td>
+                            <td>Google Maps API</td>
+                            <td>Velocidades por segmento, tiempos de traslado</td>
+                            <td>Alta (vías principales)</td>
+                            <td>Clave + contrato</td>
+                        </tr>
+                        <tr>
+                            <td>Waze for Cities</td>
+                            <td>Velocidades agregadas, alertas de incidentes</td>
+                            <td>Media-alta (según densidad de usuarios)</td>
+                            <td>Programa gratuito municipal</td>
+                        </tr>
+                        <tr>
+                            <td>C5 Jalisco</td>
+                            <td>CCTV, detección de incidentes, emergencias</td>
+                            <td>Puntual (intersecciones críticas)</td>
+                            <td>Convenio institucional</td>
+                        </tr>
+                        <tr>
+                            <td>Sensores Inductivos SEMOV</td>
+                            <td>Conteos vehiculares por carril</td>
+                            <td>Baja (puntos fijos)</td>
+                            <td>Convenio con SEMOV</td>
+                        </tr>
+                        <tr>
+                            <td>Mi Transporte Jalisco (GPS)</td>
+                            <td>Posición y velocidad de transporte público</td>
+                            <td>Buena (cobertura de rutas)</td>
+                            <td>API del sistema público</td>
+                        </tr>
+                        <tr>
+                            <td rowspan="5"><strong>Históricos & Administrativos</strong></td>
+                            <td>SEMOV Aforos 2018–2024</td>
+                            <td>Conteos en vialidades primarias</td>
+                            <td>Alta (López Mateos, Periférico, etc.)</td>
+                            <td>CSV/Excel históricos</td>
+                        </tr>
+                        <tr>
+                            <td>SSPMG — Siniestros Viales</td>
+                            <td>Incidentes de tránsito, ubicación, tipo, gravedad</td>
+                            <td>Completa (2015–2024)</td>
+                            <td>Base MS SQL por convenio</td>
+                        </tr>
+                        <tr>
+                            <td>INEGI OD 2017/2022</td>
+                            <td>Patrones de movilidad, modos, propósito</td>
+                            <td>Desagregación zonal</td>
+                            <td>Público (DBF/CSV)</td>
+                        </tr>
+                        <tr>
+                            <td>SINAICA</td>
+                            <td>Concentraciones NO₂, PM₂.₅, O₃ horarias</td>
+                            <td>Estaciones principales ZMG</td>
+                            <td>API REST pública (latencia 1–24 h)</td>
+                        </tr>
+                        <tr>
+                            <td>Marco Geoestadístico INEGI</td>
+                            <td>AGEBs, municipios, vialidades, SIG</td>
+                            <td>Completa</td>
+                            <td>Público</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <h3>1.6 Metodología: Los Tres Marcos Teóricos</h3>
+                <p><strong>1. Modelo de los Cuatro Pasos (Four-Step Travel Demand Model):</strong> El dashboard replica implícitamente esta lógica clásica del ITE, descomponiendo el comportamiento de movilidad en generación de viajes, distribución, elección modal y asignación de rutas. Esto permite que los análisis apunten hacia causas estructurales, no solo síntomas.</p>
+                
+                <p><strong>2. Teoría del Flujo Continuo (Highway Capacity Manual, HCM):</strong> La segmentación temporal en bloques de 30 minutos —en lugar de promedios horarios— responde a esta teoría, que establece que el *peak hour factor* (PHF) y fluctuaciones sub-horarias determinan el nivel de servicio real de una vialidad. Usar promedios horarios enmascararía picos donde la demanda supera la capacidad.</p>
+                
+                <p><strong>3. Marco de Ciudades Saludables (OMS) y Visión Cero:</strong> La inclusión de KPIs de emisiones (ICA) y siniestralidad, y su correlación con volumen de tráfico, refleja el compromiso con una visión integral de movilidad que no se limita a eficiencia del flujo vehicular, sino que incorpora externalidades de salud pública y seguridad vial.</p>
+            </section>
+            
+            <!-- SECCIÓN 2: ROADMAP DE SPRINTS -->
+            <section id="seccion-2">
+                <h2><span class="emoji">🚀</span>2. Roadmap de Sprints — Detalle Completo</h2>
+                
+                <h3>SPRINT 1 · 21–27 Abril — Definición del Proyecto ✅ <em>COMPLETADO</em></h3>
+                <div class="milestone">
+                    <strong>Objetivo:</strong> Confirmar dominio, establecer la arquitectura de tres capas y producir el boceto estructural.
+                </div>
+                
+                <h4>Tareas Principales</h4>
+                <ul>
+                    <li>Selección y confirmación del dominio: Movilidad Urbana ZMG</li>
+                    <li>Definición de la arquitectura de tres capas (Estratégica / Analítica / Ciudadana)</li>
+                    <li>Clasificación de todas las fuentes de datos</li>
+                    <li>Mapeo de audiencias con necesidades y vocabulario visual por capa</li>
+                    <li>Matriz de 8 KPIs v1 con frecuencias de actualización</li>
+                    <li>Boceto estructural del dashboard (wireframe de tres capas)</li>
+                </ul>
+                
+                <h4>Entregables S01</h4>
+                <ul>
+                    <li><code>boceto_v1.pdf</code> - Wireframe de las tres capas con anotaciones de audiencia</li>
+                    <li><code>project_charter.md</code> - Narrativa del proyecto, justificación técnica, scope y constraints</li>
+                    <li><code>audience_map</code> - Diagrama de audiencias con necesidades y vocabulario visual</li>
+                    <li><code>kpi_matrix_v1.xlsx</code> - Tabla de 8 KPIs con definición técnica, unidad, frecuencia y capa</li>
+                </ul>
+                
+                <hr style="margin: 30px 0; border: none; border-top: 1px solid #ddd;">
+                
+                <h3>SPRINT 2 · 28 Abril–4 Mayo — EDA & Presentación Formal ⚠️ <em>SPRINT ACTIVO</em></h3>
+                <div class="highlight">
+                    <strong>⚡ HITO CRÍTICO: Presentación Formal — 28 de Abril</strong>
+                    <p style="margin-top: 10px;">Objetivo: Ejecutar el análisis exploratorio inicial y presentar la propuesta formal ante la clase el 28 de abril.</p>
+                </div>
+                
+                <h4>Tareas Principales</h4>
+                <ul>
+                    <li><strong>[PREVIO AL 28 ABR]</strong> Preparar <code>presentacion.pptx</code> con propuesta y justificación técnica</li>
+                    <li><strong>[28 ABR]</strong> Ejecución de la presentación formal ante la clase</li>
+                    <li>Descarga e inventario de datasets (SEMOV aforos históricos, SSPMG siniestros, INEGI OD)</li>
+                    <li>Limpieza inicial: estandarización de esquemas, unificación de columnas heterogéneas</li>
+                    <li>EDA univariado: distribuciones de volumen por corredor, histograma de siniestros, perfil IMECA</li>
+                    <li>EDA bivariado: correlación volumen vs. siniestros; NO₂ vs. intensidad vehicular por zona</li>
+                    <li>Detección de anomalías: vacíos pandemia 2020–2021, nodos de baja cobertura</li>
+                </ul>
+                
+                <h4>Entregables S02</h4>
+                <ul>
+                    <li><code>presentacion.pptx</code> - Propuesta formal con arquitectura de tres capas, KPIs y justificación técnica</li>
+                    <li><code>eda_notebook.ipynb</code> - Notebook de EDA univariado y bivariado con hallazgos anotados</li>
+                    <li><code>dataset_clean_v1.csv</code> - Dataset con esquema maestro unificado y registros anómalos marcados</li>
+                    <li><code>anomaly_report.md</code> - Informe de vacíos, nodos sin cobertura y estrategia de imputación</li>
+                </ul>
+                
+                <hr style="margin: 30px 0; border: none; border-top: 1px solid #ddd;">
+                
+                <h3>SPRINT 3 · 5–11 Mayo — Diseño de Codificación Visual</h3>
+                <div class="highlight">
+                    <strong>🔒 DESIGN FREEZE — 11 de Mayo:</strong> Todas las decisiones de arquitectura visual quedan congeladas al cierre de este sprint.
+                </div>
+                
+                <h4>Tareas Principales</h4>
+                <ul>
+                    <li>Mapeo tarea analítica → tipo de gráfico para cada KPI de las tres capas</li>
+                    <li>Diseño de paleta de color accesible: diferenciación por capa, semáforo (rojo/ámbar/verde) para Capa 3</li>
+                    <li>Prototipos de mapas coropléticos (Capa 1): calor por corredor vial en ZMG</li>
+                    <li>Prototipo de heatmap hora-zona (Capa 2): eje X = hora del día, eje Y = corredor vial</li>
+                    <li>Prototipo de semáforo de congestión (Capa 3): tarjetas por vialidad con color semántico</li>
+                    <li>Revisión de principios Gestalt: figura-fondo, proximidad, continuidad en cada prototipo</li>
+                </ul>
+                
+                <h4>Entregables S03</h4>
+                <ul>
+                    <li><code>encoding_prototypes.ipynb</code> - Notebook con prototipos de cada tipo de gráfico para los 8 KPIs</li>
+                    <li><code>color_palette.png</code> - Paleta oficial: colores por capa, accesibilidad WCAG AA</li>
+                    <li><code>chart_matrix.xlsx</code> - Tabla de decisiones: KPI × Gráfico × Canal Visual × Capa × Audiencia</li>
+                    <li><code>gestalt_review.md</code> - Auditoría de principios Gestalt sobre los prototipos</li>
+                </ul>
+                
+                <hr style="margin: 30px 0; border: none; border-top: 1px solid #ddd;">
+                
+                <h3>SPRINT 4 · 12–18 Mayo — Visualizaciones Core</h3>
+                <p><strong>Objetivo:</strong> Producir el conjunto principal de gráficas en estado pulido y listo para integración en el dashboard final.</p>
+                
+                <h4>Tareas Principales</h4>
+                <ul>
+                    <li>Gráfica comparativa de barras: volumen por corredor vial</li>
+                    <li>Serie de tiempo: volumen de tráfico 2018–2024 con marcador del evento 14-ene-2025</li>
+                    <li>Heatmap hora-zona finalizado: densidad de tráfico por bloque de 30 min × corredor vial</li>
+                    <li>Análisis de Pareto: top-20 intersecciones con mayor concentración de siniestros en ZMG</li>
+                    <li>Scatter plots: volumen vs. siniestros, y NO₂ vs. intensidad vehicular por zona</li>
+                    <li>Histograma de tiempos de traslado en corredores principales</li>
+                    <li>Catálogo de insights: 3 hallazgos accionables por KPI documentados</li>
+                </ul>
+                
+                <h4>Entregables S04</h4>
+                <ul>
+                    <li><code>viz_core.ipynb</code> - Notebook con todas las visualizaciones core en estado pulido</li>
+                    <li><code>chart_exports/</code> - Carpeta con SVG + PNG de alta resolución de cada visualización</li>
+                    <li><code>insights_catalog.md</code> - Catálogo de hallazgos analíticos: mínimo 3 insights accionables por KPI</li>
+                </ul>
+                
+                <hr style="margin: 30px 0; border: none; border-top: 1px solid #ddd;">
+                
+                <h3>SPRINT 5 · 19–25 Mayo — Dashboard & Mapas Interactivos</h3>
+                <div class="milestone">
+                    <strong>📍 HITO: Dashboard y Mapa Interactivo operativos — 25 de Mayo</strong>
+                    <p style="margin-top: 10px;">Objetivo: Integrar todas las visualizaciones en Power BI (capas 1 y 2) y construir el mapa interactivo geoespacial.</p>
+                </div>
+                
+                <h4>Tareas Principales</h4>
+                <ul>
+                    <li>Diseño del modelo de datos en Power BI: tabla de hechos + dimensiones</li>
+                    <li>Construcción de medidas DAX: KPIs 1–8, comparativas temporales</li>
+                    <li><strong>Dashboard Ejecutivo (Capa 1):</strong> página PBI con KPIs agregados + mapa coroplético</li>
+                    <li><strong>Dashboard Operativo (Capa 2):</strong> página PBI con heatmap hora-zona, series de tiempo filtrables</li>
+                    <li><strong>Mapa interactivo Folium/Mapbox (Capa 3):</strong> capas OSM + INEGI + semáforo de congestión</li>
+                    <li>Integración de filtros: por zona, vialidad, tipo de día, periodo</li>
+                </ul>
+                
+                <h4>Entregables S05</h4>
+                <ul>
+                    <li><code>dashboard.pbix</code> - Archivo Power BI con modelo de datos, medidas DAX y dos dashboards</li>
+                    <li><code>mapa_interactivo.html</code> - Mapa Folium/Mapbox con capas geoespaciales y semáforo de congestión</li>
+                    <li><code>dax_measures.md</code> - Documentación de todas las medidas DAX: fórmula, propósito y KPI asociado</li>
+                </ul>
+                
+                <hr style="margin: 30px 0; border: none; border-top: 1px solid #ddd;">
+                
+                <h3>SPRINT 6 · 26 Mayo–2 Junio — Storytelling & Entrega Final</h3>
+                <div class="critical">
+                    <strong>🏁 ENTREGA FINAL — 2 de Junio</strong>
+                    <p style="margin-top: 10px;">Objetivo: Construir la narrativa analítica completa, simplificar radicalmente y consolidar todos los artefactos.</p>
+                </div>
+                
+                <h4>Tareas Principales</h4>
+                <ul>
+                    <li>Narrativa explicativa: arco de historia (evento 14-ene → problema → evidencia → solución → impacto)</li>
+                    <li>Producción de <code>presentacion_final.pptx</code>: máximo 12 diapositivas, narrativa de 5 minutos</li>
+                    <li>Auditoría final de codificación visual: consistencia de color, orden, escala y ruido</li>
+                    <li>Simplificación radical: eliminar cualquier visual que no responda una pregunta específica</li>
+                    <li>Redacción del <code>README.md</code>: guía de uso, fuentes, descripción de artefactos, decisiones de diseño clave</li>
+                    <li>Validación final con las 3 audiencias: test de comprensión en &lt; 10 s por capa</li>
+                    <li>Empaquetado del <code>.zip</code> final con todos los artefactos organizados</li>
+                </ul>
+                
+                <h4>Entregables S06</h4>
+                <ul>
+                    <li><code>presentacion_final.pptx</code> - Presentación de cierre: evento detonante → evidencia → solución → impacto</li>
+                    <li><code>dashboard_v2.pbix</code> - Dashboard Power BI revisado y auditado post-simplificación</li>
+                    <li><code>README.md</code> - Documentación completa: setup, fuentes, estructura de artefactos, decisiones clave</li>
+                    <li><code>proyecto_zmg_movilidad_final.zip</code> - Paquete consolidado con todos los entregables del proyecto</li>
+                </ul>
+            </section>
+            
+            <!-- SECCIÓN 3: HITOS Y RUTA CRÍTICA -->
+            <section id="seccion-3">
+                <h2><span class="emoji">📍</span>3. Tabla de Hitos y Ruta Crítica</h2>
+                
+                <h3>3.1 Gantt — Vista Temporal por Sprint</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Sprint</th>
+                            <th style="text-align: center;">21–27 Abr</th>
+                            <th style="text-align: center;">28 Abr–4 May</th>
+                            <th style="text-align: center;">5–11 May</th>
+                            <th style="text-align: center;">12–18 May</th>
+                            <th style="text-align: center;">19–25 May</th>
+                            <th style="text-align: center;">26 May–2 Jun</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>S01 · Definición</strong></td>
+                            <td style="text-align: center;">████████</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td><strong>S02 · EDA</strong></td>
+                            <td></td>
+                            <td style="text-align: center;">████████</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td><strong>S03 · Codif. Visual</strong></td>
+                            <td></td>
+                            <td></td>
+                            <td style="text-align: center;">████████</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td><strong>S04 · Viz Core</strong></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td style="text-align: center;">████████</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td><strong>S05 · Dashboard</strong></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td style="text-align: center;">████████</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td><strong>S06 · Storytelling</strong></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td style="text-align: center;">████████</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <h3>3.2 Tabla de Hitos Críticos</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Fecha</th>
+                            <th>Hito</th>
+                            <th>Sprint</th>
+                            <th>Tipo</th>
+                            <th>Criterio de Éxito</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>21 Abr</strong></td>
+                            <td>Entrega de boceto inicial</td>
+                            <td>S01</td>
+                            <td>✅ Completado</td>
+                            <td><code>boceto_v1.pdf</code> aprobado + <code>project_charter.md</code></td>
+                        </tr>
+                        <tr>
+                            <td><strong>28 Abr</strong></td>
+                            <td>Presentación formal ante la clase</td>
+                            <td>S02</td>
+                            <td>⚡ Crítico</td>
+                            <td>Propuesta presentada; feedback incorporado al backlog</td>
+                        </tr>
+                        <tr>
+                            <td><strong>4 May</strong></td>
+                            <td>Cierre EDA y dataset limpio</td>
+                            <td>S02</td>
+                            <td>📦 Entregable</td>
+                            <td><code>eda_notebook.ipynb</code> + <code>dataset_clean_v1.csv</code> cobertura ≥ 70%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>11 May</strong></td>
+                            <td><strong>Design Freeze</strong></td>
+                            <td>S03</td>
+                            <td>🔒 Congelamiento</td>
+                            <td><code>chart_matrix.xlsx</code> firmado; sin cambios arquitecturales post-fecha</td>
+                        </tr>
+                        <tr>
+                            <td><strong>18 May</strong></td>
+                            <td>Visualizaciones core completas</td>
+                            <td>S04</td>
+                            <td>📦 Entregable</td>
+                            <td><code>viz_core.ipynb</code> + <code>chart_exports/</code> + <code>insights_catalog.md</code></td>
+                        </tr>
+                        <tr>
+                            <td><strong>25 May</strong></td>
+                            <td>Dashboard y mapa operativos</td>
+                            <td>S05</td>
+                            <td>🗺️ Integración</td>
+                            <td><code>dashboard.pbix</code> + <code>mapa_interactivo.html</code> funcionales</td>
+                        </tr>
+                        <tr>
+                            <td><strong>2 Jun</strong></td>
+                            <td><strong>Entrega final</strong></td>
+                            <td>S06</td>
+                            <td>🏁 Cierre</td>
+                            <td><code>.zip</code> completo + presentación + README reproducible</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <h3>3.3 Ruta Crítica</h3>
+                <p style="background: #f0f0f0; padding: 20px; border-radius: 5px; font-family: monospace;">
+                    [S01: Arquitectura] → [S02: Dataset limpio] → [S03: Design Freeze 🔒] → [S04: Viz Core] → [S05: Dashboard] → [S06: Entrega 🏁]
+                </p>
+                <p>Los tres nodos de mayor riesgo son: (1) disponibilidad de datos en S02, que puede retrasar el Design Freeze; (2) el propio Design Freeze del 11 de mayo, cuya ruptura invalida los entregables de S04 y S05; y (3) el modelo DAX en Power BI (S05), donde errores de arquitectura comprimen el tiempo de storytelling en S06.</p>
+            </section>
+            
+            <!-- SECCIÓN 4: ESTRATEGIA DE MITIGACIÓN DE RIESGOS -->
+            <section id="seccion-4">
+                <h2><span class="emoji">⚠️</span>4. Estrategia de Mitigación de Riesgos</h2>
+                
+                <h3>4.1 Matriz de Riesgos</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Riesgo</th>
+                            <th>Prob.</th>
+                            <th>Impacto</th>
+                            <th>Índice</th>
+                            <th>Respuesta</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>R01</strong></td>
+                            <td>Fuentes de SEMOV no disponibles o con esquema no estandarizado</td>
+                            <td>Alta</td>
+                            <td>Alto</td>
+                            <td>🔴 Crítico</td>
+                            <td>Usar datos INEGI OD 2022 como proxy; dataset sintético calibrado</td>
+                        </tr>
+                        <tr>
+                            <td><strong>R02</strong></td>
+                            <td>Vacíos pandemia 2020–2021 en aforos históricos de SEMOV</td>
+                            <td>Alta</td>
+                            <td>Medio</td>
+                            <td>🟡 Moderado</td>
+                            <td>Imputar con mediana del bloque horario-zonal equivalente de 2019</td>
+                        </tr>
+                        <tr>
+                            <td><strong>R03</strong></td>
+                            <td>API Google Maps / Waze for Cities fuera de alcance por costos</td>
+                            <td>Media</td>
+                            <td>Alto</td>
+                            <td>🟡 Moderado</td>
+                            <td>Usar perfiles históricos INEGI OD + OSM; limitar análisis en tiempo real</td>
+                        </tr>
+                        <tr>
+                            <td><strong>R04</strong></td>
+                            <td>Retraso en S03 compromete el Design Freeze del 11 de mayo</td>
+                            <td>Baja</td>
+                            <td>Crítico</td>
+                            <td>🔴 Crítico</td>
+                            <td>Buffer de 1 día (10 May) para revisión Gestalt; reducir prototipos si persiste</td>
+                        </tr>
+                        <tr>
+                            <td><strong>R05</strong></td>
+                            <td>Estaciones SINAICA con latencia &gt; 24 h o cobertura parcial</td>
+                            <td>Media</td>
+                            <td>Medio</td>
+                            <td>🟡 Moderado</td>
+                            <td>Usar históricos 2023–2024 para patrones ICA; reportar latencia en panel</td>
+                        </tr>
+                        <tr>
+                            <td><strong>R06</strong></td>
+                            <td>Tasa de falla no documentada de sensores inductivos SEMOV/SCT</td>
+                            <td>Alta</td>
+                            <td>Medio</td>
+                            <td>🟡 Moderado</td>
+                            <td>Umbral ETL: &lt; 40% = eliminar; &gt; 40% = imputar con mediana horaria</td>
+                        </tr>
+                        <tr>
+                            <td><strong>R07</strong></td>
+                            <td>Complejidad del modelo DAX excede el tiempo estimado</td>
+                            <td>Media</td>
+                            <td>Alto</td>
+                            <td>🟡 Moderado</td>
+                            <td>Simplificar a esquema estrella con 1 tabla de hechos y 3 dimensiones</td>
+                        </tr>
+                        <tr>
+                            <td><strong>R08</strong></td>
+                            <td>Datos del C5 Jalisco requieren procesamiento de video no estructurado</td>
+                            <td>Alta</td>
+                            <td>Bajo</td>
+                            <td>🟢 Bajo</td>
+                            <td>Excluir fuentes de video del alcance; usar solo datos tabulares</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <h3>4.2 Estrategia ETL por Fases</h3>
+                <p><strong>Etapa 1 — Unificación de Esquema (S02):</strong> Construir el esquema maestro provisional con todas las columnas posibles de todas las fuentes activas sin descartar variables. Resultado: <code>schema_master_v1.xlsx</code>.</p>
+                
+                <p><strong>Etapa 2 — Validación y Limpieza (S03–S04):</strong> Calcular tasa de cobertura por variable. Conservar variables con ≥ 70% de registros válidos. Eliminar registros con &lt; 40% de características válidas. Imputar con mediana/moda del bloque horario-zonal si el registro supera el umbral del 40%.</p>
+                
+                <p><strong>Etapa 3 — Recolección Adicional Paralela (S04–S06):</strong> Gestión de convenios con Waze for Cities y C5 Jalisco en paralelo con el desarrollo del dashboard, sin bloquear la ruta crítica.</p>
+                
+                <h3>4.3 Protocolo de Escalación</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Nivel</th>
+                            <th>Condición</th>
+                            <th>Acción</th>
+                            <th>Responsable</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>🟢 Verde</td>
+                            <td>Sprint avanza según plan</td>
+                            <td>Stand-up diario de 15 minutos</td>
+                            <td>Equipo</td>
+                        </tr>
+                        <tr>
+                            <td>🟡 Amarillo</td>
+                            <td>Tarea con &gt; 2 días de retraso</td>
+                            <td>Repriorizar backlog; ajustar alcance del sprint</td>
+                            <td>PM</td>
+                        </tr>
+                        <tr>
+                            <td>🔴 Rojo</td>
+                            <td>Riesgo R04 activo (Design Freeze en peligro)</td>
+                            <td>Reducir scope a KPIs 1–4; notificar al facilitador académico</td>
+                            <td>PM + Equipo</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+            
+            <!-- SECCIÓN 5: INVENTARIO DE ARTEFACTOS -->
+            <section id="seccion-5">
+                <h2><span class="emoji">📦</span>5. Inventario Completo de Artefactos</h2>
+                
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Sprint</th>
+                            <th>Artefacto</th>
+                            <th>Tipo</th>
+                            <th>Fecha Límite</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>S01</td>
+                            <td><code>boceto_v1.pdf</code></td>
+                            <td>Diseño</td>
+                            <td>27 Abr ✅</td>
+                        </tr>
+                        <tr>
+                            <td>S01</td>
+                            <td><code>project_charter.md</code></td>
+                            <td>Documentación</td>
+                            <td>27 Abr ✅</td>
+                        </tr>
+                        <tr>
+                            <td>S01</td>
+                            <td><code>audience_map</code></td>
+                            <td>Diseño</td>
+                            <td>27 Abr ✅</td>
+                        </tr>
+                        <tr>
+                            <td>S01</td>
+                            <td><code>kpi_matrix_v1.xlsx</code></td>
+                            <td>Datos</td>
+                            <td>27 Abr ✅</td>
+                        </tr>
+                        <tr>
+                            <td>S02</td>
+                            <td><code>presentacion.pptx</code></td>
+                            <td>Presentación</td>
+                            <td>28 Abr ⚡</td>
+                        </tr>
+                        <tr>
+                            <td>S02</td>
+                            <td><code>eda_notebook.ipynb</code></td>
+                            <td>Análisis</td>
+                            <td>4 May</td>
+                        </tr>
+                        <tr>
+                            <td>S02</td>
+                            <td><code>dataset_clean_v1.csv</code></td>
+                            <td>Datos</td>
+                            <td>4 May</td>
+                        </tr>
+                        <tr>
+                            <td>S02</td>
+                            <td><code>anomaly_report.md</code></td>
+                            <td>Documentación</td>
+                            <td>4 May</td>
+                        </tr>
+                        <tr>
+                            <td>S03</td>
+                            <td><code>encoding_prototypes.ipynb</code></td>
+                            <td>Análisis</td>
+                            <td>11 May 🔒</td>
+                        </tr>
+                        <tr>
+                            <td>S03</td>
+                            <td><code>color_palette.png</code></td>
+                            <td>Diseño</td>
+                            <td>11 May 🔒</td>
+                        </tr>
+                        <tr>
+                            <td>S03</td>
+                            <td><code>chart_matrix.xlsx</code></td>
+                            <td>Decisiones</td>
+                            <td>11 May 🔒</td>
+                        </tr>
+                        <tr>
+                            <td>S03</td>
+                            <td><code>gestalt_review.md</code></td>
+                            <td>Calidad</td>
+                            <td>11 May 🔒</td>
+                        </tr>
+                        <tr>
+                            <td>S04</td>
+                            <td><code>viz_core.ipynb</code></td>
+                            <td>Análisis</td>
+                            <td>18 May</td>
+                        </tr>
+                        <tr>
+                            <td>S04</td>
+                            <td><code>chart_exports/</code></td>
+                            <td>Producción</td>
+                            <td>18 May</td>
+                        </tr>
+                        <tr>
+                            <td>S04</td>
+                            <td><code>insights_catalog.md</code></td>
+                            <td>Análisis</td>
+                            <td>18 May</td>
+                        </tr>
+                        <tr>
+                            <td>S05</td>
+                            <td><code>dashboard.pbix</code></td>
+                            <td>Dashboard</td>
+                            <td>25 May 📍</td>
+                        </tr>
+                        <tr>
+                            <td>S05</td>
+                            <td><code>mapa_interactivo.html</code></td>
+                            <td>Mapa</td>
+                            <td>25 May 📍</td>
+                        </tr>
+                        <tr>
+                            <td>S05</td>
+                            <td><code>dax_measures.md</code></td>
+                            <td>Documentación</td>
+                            <td>25 May 📍</td>
+                        </tr>
+                        <tr>
+                            <td>S06</td>
+                            <td><code>presentacion_final.pptx</code></td>
+                            <td>Presentación</td>
+                            <td>2 Jun 🏁</td>
+                        </tr>
+                        <tr>
+                            <td>S06</td>
+                            <td><code>dashboard_v2.pbix</code></td>
+                            <td>Dashboard</td>
+                            <td>2 Jun 🏁</td>
+                        </tr>
+                        <tr>
+                            <td>S06</td>
+                            <td><code>README.md</code></td>
+                            <td>Documentación</td>
+                            <td>2 Jun 🏁</td>
+                        </tr>
+                        <tr>
+                            <td>S06</td>
+                            <td><code>proyecto_zmg_movilidad_final.zip</code></td>
+                            <td>Entrega</td>
+                            <td>2 Jun 🏁</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <div class="highlight" style="margin-top: 40px;">
+                    <strong>📝 Notas Finales:</strong>
+                    <p style="margin-top: 10px;">El Design Freeze del 11 de mayo es el nodo más frágil de la ruta crítica; el buffer de un día en el 10 de mayo para la revisión Gestalt es deliberado. Cualquier debate sobre paletas de color o tipo de gráfico que no se resuelva antes del 11 de mayo debe cerrarse con una decisión ejecutiva del PM, no con más iteraciones.</p>
+                </div>
+            </section>
+        </main>
+        
+        <footer>
+            <p><strong>Dashboard de Movilidad Urbana ZMG</strong> · Visualización de Datos 2025–2026</p>
+            <p>Plan de Gestión Ágil v1.0 · Mayo 2026</p>
+            <p style="margin-top: 15px; opacity: 0.8;">Documento de gestión académica para el proyecto Dashboard de Movilidad Urbana ZMG</p>
+        </footer>
+    </div>
+</body>
+</html>
